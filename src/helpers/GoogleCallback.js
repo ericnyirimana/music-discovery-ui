@@ -18,8 +18,8 @@ const GoogleCallback = () => {
 						return response;
 					})
 					.then((data) => {
-						window.localStorage.setItem('token', data.data.access_token);
-						window.localStorage.setItem('username', data.data.user?.name);
+						localStorage.setItem('token', data.data.access_token);
+						localStorage.setItem('username', data.data.user?.name);
 						navigate('/dashboard');
 					})
 					.catch((error) => console.error(error));

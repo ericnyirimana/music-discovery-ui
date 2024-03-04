@@ -85,8 +85,8 @@ const SearchResult = ({ artist, album, page, loader }) => {
 			<div
 				className={
 					!artistData
-						? 'max-w-[1240px] mx-auto py-20'
-						: 'max-w-[1240px] mx-auto grid md:grid-cols-4 gap-8 py-20'
+						? 'max-w-[1240px] mx-auto py-10'
+						: 'max-w-[1240px] mx-auto grid md:grid-cols-4 gap-8 py-10'
 				}
 			>
 				{artistData && artistData.length > 0 ? (
@@ -180,8 +180,8 @@ const SearchResult = ({ artist, album, page, loader }) => {
 			<div
 				className={
 					!albumData
-						? 'max-w-[1240px] mx-auto py-20'
-						: 'max-w-[1240px] mx-auto grid md:grid-cols-4 gap-8 py-20'
+						? 'max-w-[1240px] mx-auto py-10'
+						: 'max-w-[1240px] mx-auto grid md:grid-cols-4 gap-8 py-10'
 				}
 			>
 				{albumData && albumData.length > 0 ? (
