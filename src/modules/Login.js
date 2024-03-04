@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import axiosPayload from '../helpers/AxiosPayload'
 
-const SignIn = () => {
+const Login = () => {
 
   const [loginUrl, setLoginUrl] = useState(null);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   useEffect(() => {
     const fetchData = () => {
       axios
-        .get(`${process.env.REACT_APP_API_URL}/google/redirect`, axiosPayload)
+        .get(`${process.env.REACT_APP_API_URL}/google/redirect`, axiosPayload())
         .then(response => {
           if (response.status === 200) {
               return response?.data;
@@ -62,4 +62,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default Login
