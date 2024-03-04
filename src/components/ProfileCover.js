@@ -2,7 +2,7 @@ import React from 'react';
 import { RxAvatar } from 'react-icons/rx';
 
 const ProfileCover = () => {
-    const userName = window.localStorage.getItem('username');
+    const userName = localStorage.getItem('username');
 	return (
 		<>
 			<div className="w-full py-6 text-white px-4 bg-black">

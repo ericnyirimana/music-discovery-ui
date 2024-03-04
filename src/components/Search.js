@@ -20,8 +20,7 @@ const Search = () => {
 			.then((data) => {
 				setLoader(false);
 				artistOrAlbum === ARTIST ? setArtistData(data) : setAlbumData(data);
-			}
-			)
+			})
 			.catch((error) => {
 				setLoader(false);
 				setArtistData({});
@@ -39,7 +38,7 @@ const Search = () => {
 
 	return (
 		<>
-			<div className="w-full py-16 text-white px-4 bg-black">
+			<div className="w-full py-6 text-white px-4 bg-black">
 				<div className="max-w-[1240px] mx-auto text-center flex flex-col justify-center">
 					<div className="lg:col-span-2 my-4">
 						<h1 className="md:text-4xl sm:text-3xl text-2xl font-bold py-2">
@@ -59,7 +58,12 @@ const Search = () => {
 					</div>
 				</div>
 			</div>
-			<SearchResult album={albumData} artist={artistData} page={pageName} loader={isLoading}/>
+			<SearchResult
+				album={albumData}
+				artist={artistData}
+				page={pageName}
+				loader={isLoading}
+			/>
 		</>
 	);
 };
