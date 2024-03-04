@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SearchResult from './SearchResult';
 import axios from 'axios';
-import axiosPayload from '../helpers/AxiosPayload';
+import { ALBUM, ARTIST } from '../helpers/Constant';
 
 const Search = () => {
 	const [artistData, setArtistData] = useState({});
@@ -9,23 +9,26 @@ const Search = () => {
 	const searchData = (artistOrAlbum, inputData) => {
 		axios
 			.get(
-				`https://ws.audioscrobbler.com/2.0/?method=${artistOrAlbum}.search&${artistOrAlbum}=${inputData}&api_key=${process.env.REACT_APP_LAST_FM_API_KEY}&format=json&limit=8`,
-				axiosPayload
+				`https://ws.audioscrobbler.com/2.0/?method=${artistOrAlbum}.search&${artistOrAlbum}=${inputData}&api_key=${process.env.REACT_APP_LAST_FM_API_KEY}&format=json&limit=8`
 			)
 			.then((response) => {
 				return response;
 			})
 			.then((data) =>
-				artistOrAlbum === 'artist' ? setArtistData(data) : setAlbumData(data)
+				artistOrAlbum === ARTIST ? setArtistData(data) : setAlbumData(data)
 			)
-			.catch((error) => {setArtistData({}); setAlbumData({}); console.error(error)});
+			.catch((error) => {
+				setArtistData({});
+				setAlbumData({});
+				console.error(error);
+			});
 	};
 
 	const handleInput = (e) => {
-    e.preventDefault();
+		e.preventDefault();
 		const value = e.target.value;
-		searchData('artist', value);
-		searchData('album', value);
+		searchData(ARTIST, value);
+		searchData(ALBUM, value);
 	};
 
 	return (
@@ -44,7 +47,7 @@ const Search = () => {
 								className="w-[600px] p-3 flex text-black rounded-full border-2 border-[#00df9a]"
 								type="email"
 								placeholder="Type and Search for artists or albums"
-                onInput={handleInput}
+								onInput={handleInput}
 							/>
 						</div>
 					</div>

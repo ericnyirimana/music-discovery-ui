@@ -1,11 +1,30 @@
 import React from 'react';
 import { numberFormatWithCommas } from '../helpers/NumberFormat';
-import { IoMdHeartEmpty, IoMdHeart } from 'react-icons/io';
+import { IoHeartCircle } from 'react-icons/io5';
+import { ALBUMS, ARTISTS } from '../helpers/Constant';
+import axios from 'axios';
+import axiosPayload from '../helpers/AxiosPayload';
+import { errorMessage, successMessage } from '../helpers/Toast';
+import { Toaster } from 'react-hot-toast';
 
 const SearchResult = ({ artist, album }) => {
 	const artistResult = artist?.data?.results?.artistmatches?.artist;
-	console.log('tttttt', artistResult);
 	const albumResult = album?.data?.results?.albummatches?.album;
+	const addToFavorites = (artistOrAlbum, inputData) => {
+		axios
+			.post(`${process.env.REACT_APP_API_URL}/${artistOrAlbum}`,
+				inputData, axiosPayload()
+			)
+			.then((response) => {
+				console.log(response?.data)
+				successMessage(response?.data?.message)
+				return response;
+			})
+			.catch((error) => {
+				errorMessage(error?.message)
+				console.error(error);
+			});
+	};
 	return (
 		<div className="w-full py-[1rem] px-4 bg-white">
 			<h1 className="md:text-4xl sm:text-3xl text-2xl font-bold py-2 text-center flex flex-col justify-center">
@@ -38,7 +57,9 @@ const SearchResult = ({ artist, album }) => {
 										<p className="py-2">
 											{numberFormatWithCommas(eachArtist?.listeners)} Listeners
 										</p>
-										<IoMdHeartEmpty size={20} />
+										<button onClick={() => addToFavorites(ARTISTS, {mbid: eachArtist?.mbid})}>
+										<IoHeartCircle size={30}/></button>
+										<Toaster />
 									</div>
 								</div>
 							</>
@@ -76,7 +97,9 @@ const SearchResult = ({ artist, album }) => {
 									</h4>
 									<div className="font-normal text-[13px] text-center flex justify-between">
 										<p className="py-2 mx-8">Artist: {eachAlbum?.artist}</p>
-										<IoMdHeartEmpty size={20} />
+										<button onClick={() => addToFavorites(ALBUMS, {mbid: eachAlbum?.mbid})}>
+										<IoHeartCircle size={30}/></button>
+										<Toaster />
 									</div>
 								</div>
 							</>
