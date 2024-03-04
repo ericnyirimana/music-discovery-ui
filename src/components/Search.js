@@ -6,7 +6,10 @@ import { ALBUM, ARTIST } from '../helpers/Constant';
 const Search = () => {
 	const [artistData, setArtistData] = useState({});
 	const [albumData, setAlbumData] = useState({});
+	const [isLoading, setLoader] = useState(false);
+	const pageName = 'dashboard';
 	const searchData = (artistOrAlbum, inputData) => {
+		setLoader(true);
 		axios
 			.get(
 				`https://ws.audioscrobbler.com/2.0/?method=${artistOrAlbum}.search&${artistOrAlbum}=${inputData}&api_key=${process.env.REACT_APP_LAST_FM_API_KEY}&format=json&limit=8`
@@ -14,10 +17,13 @@ const Search = () => {
 			.then((response) => {
 				return response;
 			})
-			.then((data) =>
-				artistOrAlbum === ARTIST ? setArtistData(data) : setAlbumData(data)
+			.then((data) => {
+				setLoader(false);
+				artistOrAlbum === ARTIST ? setArtistData(data) : setAlbumData(data);
+			}
 			)
 			.catch((error) => {
+				setLoader(false);
 				setArtistData({});
 				setAlbumData({});
 				console.error(error);
@@ -53,7 +59,7 @@ const Search = () => {
 					</div>
 				</div>
 			</div>
-			<SearchResult album={albumData} artist={artistData} />
+			<SearchResult album={albumData} artist={artistData} page={pageName} loader={isLoading}/>
 		</>
 	);
 };
