@@ -1,6 +1,39 @@
-# Getting Started with Create React App
+# Music Discovery
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Music Discovery is an APP that consumes <a href="https://www.last.fm/api">LAST FM APIs</a> and enables to get Artists and Albums information
+
+# Clone repository
+
+Before starting the installation you need to clone the repository through the below git command:
+
+    git clone https://github.com/ericnyirimana/music-discovery-ui.git
+
+# Add Environment Variables
+
+Create .env in the root folder and add the below variables
+
+    REACT_APP_API_URL={YOUR_REACT_APP_API_URL}
+    REACT_APP_LAST_FM_API_KEY={YOUR_REACT_APP_LAST_FM_API_KEY}
+    REACT_APP_LAST_FM_API_URL=https://ws.audioscrobbler.com/2.0/
+
+### Installation
+
+You need to have `yarn` install into your PC and then run the below command
+
+```
+> yarn install
+```
+#### Start Application
+
+```
+> yarn start
+```
+
+>Access the app through [http://localhost:3000](http://localhost:3000)
+
+## Contributors
+
+- NYIRIMANA Eric
 
 ## Available Scripts
 
