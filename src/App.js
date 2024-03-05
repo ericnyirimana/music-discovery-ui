@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Login from './modules/Login';
+import Dashboard from './modules/Dashboard';
+import GoogleCallback from './helpers/GoogleCallback';
+import Profile from './modules/Profile';
+import { PrivateRoutes } from './helpers/PrivateRoutes';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+          <Routes>
+              <Route path="/" element={<Login />}></Route>
+              <Route path="/google/callback" element={<GoogleCallback />} ></Route>
+              <Route element={<PrivateRoutes />}>
+                <Route path="/dashboard" element={<Dashboard />} ></Route>
+                <Route path="/profile" element={<Profile />} ></Route>
+              </Route>
+          </Routes>
+      </BrowserRouter>
   );
 }
 
