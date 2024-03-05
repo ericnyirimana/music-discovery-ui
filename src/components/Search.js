@@ -12,7 +12,7 @@ const Search = () => {
 		setLoader(true);
 		axios
 			.get(
-				`https://ws.audioscrobbler.com/2.0/?method=${artistOrAlbum}.search&${artistOrAlbum}=${inputData}&api_key=${process.env.REACT_APP_LAST_FM_API_KEY}&format=json&limit=8`
+				`${process.env.REACT_APP_LAST_FM_API_URL}?method=${artistOrAlbum}.search&${artistOrAlbum}=${inputData}&api_key=${process.env.REACT_APP_LAST_FM_API_KEY}&format=json&limit=8`
 			)
 			.then((response) => {
 				return response;

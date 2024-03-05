@@ -12,13 +12,6 @@ const SearchResult = ({ artist, album, page, loader }) => {
 	const [artistData, setArtistData] = useState({});
 	const [albumData, setAlbumData] = useState({});
 	const [isLoading, setLoader] = useState(false);
-	// if(page === 'dashboard'){
-	// 	setArtistData(artist?.data?.results?.artistmatches?.artist);
-	// 	setAlbumData(album?.data?.results?.albummatches?.album);
-	// }
-	// page = 'dashboard' ? setArtistData() :
-	// const artistResult = artist?.data?.results?.artistmatches?.artist;
-	// const albumResult = album?.data?.results?.albummatches?.album;
 	const addToFavorites = (artistOrAlbum, inputData) => {
 		axios
 			.post(
@@ -144,11 +137,11 @@ const SearchResult = ({ artist, album, page, loader }) => {
 														>
 															<IoHeartCircle size={30} color="#00df9a" />
 														</button>
-														<Toaster />
 													</>
 												)}
 											</>
 										}
+										<Toaster />
 									</div>
 								</div>
 							</>
