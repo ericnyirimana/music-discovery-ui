@@ -131,7 +131,7 @@ const SearchResult = ({ artist, album, page, loader }) => {
 															onClick={() =>
 																removeToFavorites(
 																	ARTISTS,
-																	eachArtist?.artist?.mbid
+																	eachArtist?.id
 																)
 															}
 														>
@@ -223,7 +223,7 @@ const SearchResult = ({ artist, album, page, loader }) => {
 													<>
 														<button
 															onClick={() =>
-																removeToFavorites(ALBUMS, eachAlbum?.mbid)
+																removeToFavorites(ALBUMS, eachAlbum?.id)
 															}
 														>
 															<IoHeartCircle size={30} color="#00df9a" />
